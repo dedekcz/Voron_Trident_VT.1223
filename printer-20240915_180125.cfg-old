@@ -1,5 +1,4 @@
 #[include fluidd.cfg]
-#[include mmu/base/*.cfg]
 [include mainsail.cfg]
 [include tones_Picobilical.cfg]
 [include config_backup.cfg]
@@ -235,8 +234,8 @@ filament_diameter: 1.75
 heater_pin: EBBCan:PB13
 sensor_pin: EBBCan:PA3
 ##	Validate the following thermistor type to make sure it is correct
-sensor_type: Generic 3950 # EPCOS 100K B57560G104F
-min_temp: -100
+sensor_type: EPCOS 100K B57560G104F
+min_temp: 10
 max_temp: 320
 max_power: 1.0
 min_extrude_temp: 170
@@ -336,8 +335,8 @@ samples_tolerance_retries: 3
 #         {% endif %}
 #     {% endif %}
 
-# [filament_switch_sensor toolhead_sensor]
-# pause_on_runout: True
+[filament_switch_sensor CW2_filament_sensor]
+pause_on_runout: True
 #   When set to True, a PAUSE will execute immediately after a runout
 #   is detected. Note that if pause_on_runout is False and the
 #   runout_gcode is omitted then runout detection is disabled. Default
@@ -352,7 +351,7 @@ samples_tolerance_retries: 3
 #   detected. See docs/Command_Templates.md for G-Code format. The
 #   default is not to run any G-Code commands, which disables insert
 #   detection.
-# event_delay: 3.0
+event_delay: 3.0
 #   The minimum amount of time in seconds to delay between events.
 #   Events triggered during this time period will be silently
 #   ignored. The default is 3 seconds.
@@ -361,18 +360,9 @@ samples_tolerance_retries: 3
 #   dispatch and execution of the runout_gcode. It may be useful to
 #   increase this delay if OctoPrint exhibits strange pause behavior.
 #   Default is 0.5 seconds.
-# switch_pin: ^EBBCan:PB8
+switch_pin: EBBCan:PB8
 #   The pin on which the switch is connected. This parameter must be
 #   provided.
-# [filament_switch_sensor toolhead_sensor_2]
-# event_delay: 1.0
-# switch_pin: ^EBBCan:PB9
-
-# [filament_switch_sensor toolhead_sensor]
-# switch_pin: ^EBBCan:PB8
-
-# [filament_switch_sensor toolhead_sensor_2]
-# switch_pin: ^EBBCan:PB9
 
 
 #####################################################################
